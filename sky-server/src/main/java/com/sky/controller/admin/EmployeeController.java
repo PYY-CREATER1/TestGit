@@ -67,14 +67,16 @@ public class EmployeeController {
      *
      * @return
      */
+    //员工退出
     @PostMapping("/logout")
     public Result<String> logout() {
+
         return Result.success();
     }
 
     //添加员工
     @PostMapping
-    public Result<String> register(@RequestBody EmployeeDTO employeeDTO) {
+    public Result save(@RequestBody EmployeeDTO employeeDTO) {
         log.info("新增员工: {}", employeeDTO);
         employeeService.save(employeeDTO);
         return Result.success();
