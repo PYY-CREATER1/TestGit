@@ -10,4 +10,18 @@
         values (#{name},#{categoryId},#{price},#{image},#{description},#{status},
                 #{updateTime},#{createTime},#{updateUser},#{createUser})
     </insert>
+    <select id="pageQuery" resultType="com.sky.vo.DishVO">
+        select d.*, c.name from sky_take_out.dish d left join sky_take_out.category c on d.category_id = c.id
+        <where>
+        <if test="name != null and name != ''">
+            and d.name like concat('%',#{name},'%')
+        </if>
+        <if test="categoryId != null">
+            and d.category_id = #{categoryId}
+        </if>
+        <if test="status != null">
+            and d.status = #{status}
+        </if>
+    </where>
+    </select>
 </mapper>
