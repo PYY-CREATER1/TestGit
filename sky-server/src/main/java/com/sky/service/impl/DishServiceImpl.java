@@ -160,4 +160,11 @@ public class DishServiceImpl implements DishService {
     public void startorStop(Integer status, Long id) {
       dishMapper.startorStop(status,id);
     }
+
+    //根据分类id查询菜品
+    @Override
+    public List<DishVO> getById(Integer categoryId) {
+      List<DishVO>  dishVO  = dishMapper.getByCategoryId(categoryId);
+        return dishVO;
+    }
 }

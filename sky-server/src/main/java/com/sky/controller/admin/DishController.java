@@ -76,7 +76,7 @@ public class DishController {
         return Result.success();
     }
 
-    //根据id修改菜品
+    //根据id新增菜品
     @PutMapping()
     public Result<DishVO> update(@RequestBody DishDTO dishDTO){
         log.info("根据id修改菜品：{}", dishDTO);
@@ -84,6 +84,14 @@ public class DishController {
         CleanDish("dish_*");
       DishVO dishVO   = dishService.updatewithFlavor(dishDTO);
         return Result.success(dishVO);
+    }
+
+ //根据id分类查询菜品
+    @GetMapping("/list")
+    public Result<List<DishVO>> list(Integer categoryId){
+        log.info("根据id分类查询菜品：{}", categoryId);
+       List<DishVO> dishes  =  dishService.getById(categoryId);
+       return Result.success(dishes);
     }
 
 

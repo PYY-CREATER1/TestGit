@@ -49,6 +49,13 @@ public interface DishMapper {
      */
     List<Dish> list(Dish dish);
 
+    //  起售停售
     @Update("update dish set status = #{status} where id = #{id}")
     void startorStop(Integer status, Long id);
+
+    @Select("select * from dish where category_id = #{categoryId} and status = 1")
+    List<DishVO> getByCategoryId(Integer categoryId);
+
+    @Select("select a.* from dish a left join setmeal_dish b on a.id = b.dish_id where b.setmeal_id = #{setmealId}")
+    List<Dish> getBySetmealId(Long id);
 }
